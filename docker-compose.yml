@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  angular:
+    build: 
+      context: Angular-dev-env
+      args:
+          - http_proxy=${http_proxy}
+          - https_proxy=${https_proxy}
+          - no_proxy=${no_proxy}
+          - USERID=1000
+          - GROUPID=1000
+    restart: unless-stopped
+    tty: true
+#    ports: 
+#      - 80:4200
+    environment:
+      - USERNAME=angular
+      - GROUPNAME=angular
+    volumes:
+      - ./volumes/angular/workspace:/home/angular/workspace
