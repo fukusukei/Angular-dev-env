@@ -69,5 +69,11 @@ yarn --pure-lockfile && \
 ;else \
 yarn --cache-folder ./ycache && rm -rf ./ycache \
 ;fi
-    
+
+RUN  if [ -n "${http_proxy}" ]; then \
+    sudo npm -g config set proxy ${http_proxy} && \
+    sudo npm -g config set https-proxy ${http_proxy} \
+;fi && \
+sudo npm install @angular/cli -g
+
 WORKDIR /home/${USERNAME}/workspace
